@@ -74,7 +74,7 @@ static int nfvasprintf(char **strp, const char *fmt, va_list ap)
 	int len;
 	char tmp[8192];
 
-	len = vsnprintf(tmp, sizeof(tmp), fmt, ap);
+	len = xvsnprintf(tmp, sizeof(tmp), fmt, ap);
 	if (len < 0)
 		die("Fatal: Out of memory");
 	if (len >= sizeof(tmp))
@@ -510,7 +510,7 @@ static int nfsnprintf(char *buf, int blen, const char *fmt, ...)
 	va_list va;
 
 	va_start(va, fmt);
-	if (blen <= 0 || (unsigned)(ret = vsnprintf(buf, blen, fmt, va)) >= (unsigned)blen)
+	if (blen <= 0 || (unsigned)(ret = xvsnprintf(buf, blen, fmt, va)) >= (unsigned)blen)
 		die("BUG: buffer too small. Please report a bug.");
 	va_end(va);
 	return ret;
