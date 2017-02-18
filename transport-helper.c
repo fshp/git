@@ -1138,7 +1138,7 @@ static void transfer_debug(const char *fmt, ...)
 		return;
 
 	va_start(args, fmt);
-	vsnprintf(msgbuf, PBUFFERSIZE, fmt, args);
+	xvsnprintf(msgbuf, PBUFFERSIZE, fmt, args);
 	va_end(args);
 	fprintf(stderr, "Transfer loop debugging: %s\n", msgbuf);
 }
