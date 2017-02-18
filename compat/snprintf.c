@@ -46,7 +46,7 @@ int git_vsnprintf(char *str, size_t maxsize, const char *format, va_list ap)
 			break;
 		s = str;
 		va_copy(cp, ap);
-		ret = vsnprintf(str, maxsize-SNPRINTF_SIZE_CORR, format, cp);
+		ret = xvsnprintf(str, maxsize-SNPRINTF_SIZE_CORR, format, cp);
 		va_end(cp);
 		if (ret == maxsize-1)
 			ret = -1;
