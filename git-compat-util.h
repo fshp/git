@@ -888,6 +888,9 @@ static inline size_t xsize_t(off_t len)
 	return (size_t)len;
 }
 
+__attribute__((format (printf, 3, 0)))
+extern int xvsnprintf(char *dst, size_t max, const char *fmt, va_list ap);
+
 __attribute__((format (printf, 3, 4)))
 extern int xsnprintf(char *dst, size_t max, const char *fmt, ...);
 

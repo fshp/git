@@ -635,19 +635,28 @@ char *xgetcwd(void)
 	return strbuf_detach(&sb, NULL);
 }
 
+int xvsnprintf(char *dst, size_t max, const char *fmt, va_list ap)
+{
+	int len;
+
+	len = vsnprintf(dst, max, fmt, ap);
+
+	if (len < 0)
+		die("BUG: your vsnprintf/snprintf is broken (returned %d)", len);
+	if (len >= max)
+		die("BUG: attempt to vsnprintf/snprintf into too-small buffer");
+	return len;
+}
+
 int xsnprintf(char *dst, size_t max, const char *fmt, ...)
 {
 	va_list ap;
 	int len;
 
 	va_start(ap, fmt);
-	len = vsnprintf(dst, max, fmt, ap);
+	len = xvsnprintf(dst, max, fmt, ap);
 	va_end(ap);
 
-	if (len < 0)
-		die("BUG: your snprintf is broken");
-	if (len >= max)
-		die("BUG: attempt to snprintf into too-small buffer");
 	return len;
 }
 
