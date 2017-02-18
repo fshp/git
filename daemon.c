@@ -79,7 +79,7 @@ static void logreport(int priority, const char *err, va_list params)
 {
 	if (log_syslog) {
 		char buf[1024];
-		vsnprintf(buf, sizeof(buf), err, params);
+		xvsnprintf(buf, sizeof(buf), err, params);
 		syslog(priority, "%s", buf);
 	} else {
 		/*
