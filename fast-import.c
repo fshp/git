@@ -501,7 +501,7 @@ static NORETURN void die_nicely(const char *err, va_list params)
 	static int zombie;
 	char message[2 * PATH_MAX];
 
-	vsnprintf(message, sizeof(message), err, params);
+	xvsnprintf(message, sizeof(message), err, params);
 	fputs("fatal: ", stderr);
 	fputs(message, stderr);
 	fputc('\n', stderr);
