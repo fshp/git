@@ -39,7 +39,7 @@ void syslog(int priority, const char *fmt, ...)
 	}
 
 	va_start(ap, fmt);
-	vsnprintf(str, str_len + 1, fmt, ap);
+	xvsnprintf(str, str_len + 1, fmt, ap);
 	va_end(ap);
 
 	while ((pos = strstr(str, "%1")) != NULL) {
