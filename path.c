@@ -55,7 +55,7 @@ char *mksnpath(char *buf, size_t n, const char *fmt, ...)
 	unsigned len;
 
 	va_start(args, fmt);
-	len = vsnprintf(buf, n, fmt, args);
+	len = xvsnprintf(buf, n, fmt, args);
 	va_end(args);
 	if (len >= n) {
 		strlcpy(buf, bad_path, n);
