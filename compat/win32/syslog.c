@@ -24,11 +24,11 @@ void syslog(int priority, const char *fmt, ...)
 		return;
 
 	va_start(ap, fmt);
-	str_len = vsnprintf(NULL, 0, fmt, ap);
+	str_len = xvsnprintf(NULL, 0, fmt, ap);
 	va_end(ap);
 
 	if (str_len < 0) {
-		warning_errno("vsnprintf failed");
+		warning_errno("xvsnprintf failed");
 		return;
 	}
 
