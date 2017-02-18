@@ -179,7 +179,7 @@ static int ask_yes_no_if_possible(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-	vsnprintf(question, sizeof(question), format, args);
+	xvsnprintf(question, sizeof(question), format, args);
 	va_end(args);
 
 	if ((retry_hook[0] = mingw_getenv("GIT_ASK_YESNO"))) {
